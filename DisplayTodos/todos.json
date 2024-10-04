@@ -1,0 +1,20 @@
+{
+  "myToDos": [
+    {
+      "item": "Create Todo App",
+      "importance": "importanceTag",
+      "checked": false,
+      "id": 1,
+      "assigned": false,
+      "project": "Inbox"
+    },
+    {
+      "item": "Style Todo App",
+      "importance": "workTag",
+      "checked": false,
+      "id": 2,
+      "assigned": false,
+      "project": "Todo App"
+    }
+  ]
+}
