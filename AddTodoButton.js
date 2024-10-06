@@ -1,6 +1,4 @@
 import { newTodo } from "./CreateToDo";
-import { displayTodos } from "./DisplayTodos/DisplayTodos";
-import { projects } from "./Projects/Projects";
 import { updateProjectsArray } from "./Projects/UpdateProjects";
 import checkMarkImage from "./images/check-solid.svg";
 import tagButtonImage from "./images/tag-solid.svg";
@@ -63,12 +61,12 @@ function todoInput() {
   projectSelectorLabel.textContent = "Project:";
   //foreach to get inbox/project assignments for dropdown selector
   updateProjectsArray();
-  projects.forEach((projectName) => {
+  /*projects.forEach((projectName) => {
     const optionSelector = document.createElement("option");
     optionSelector.value = projectName;
     optionSelector.textContent = projectName;
     projectSelector.appendChild(optionSelector);
-  });
+  });*/
   projectSelectorLabel.appendChild(projectSelector);
 
   //appending of each container ITEM to display

@@ -3,8 +3,10 @@ import completedImage from "./images/box-solid.svg";
 import addNewTodoImage from "./images/plus-solid.svg";
 import userAvatarImage from "./images/user-plus-solid.svg";
 import allListImage from "./images/list-solid.svg";
+import projectImage from "./images/folder-open-solid.svg";
 import { addTodoForm } from "./AddTodoForm";
 import { avatarLoginPopover } from "./LoginPage/AvatarLoginPopover";
+import { projectsForm } from "./Projects/ProjectsForm";
 
 function sideBar() {
   //sidebar nav
@@ -35,29 +37,37 @@ function sideBar() {
   addNewTodo.id = "addNewTodo";
   const addNewTodoImg = document.createElement("img");
   addNewTodoImg.id = "addNewTodoImg";
+  //projects button
+  const project = document.createElement("div");
+  project.id = "project";
+  const projectImg = document.createElement("img");
+  projectImg.id = "projectImg";
 
   userAvatarImg.src = userAvatarImage;
   allListImg.src = allListImage;
   inboxImg.src = inboxImage;
   completedImg.src = completedImage;
   addNewTodoImg.src = addNewTodoImage;
+  projectImg.src = projectImage;
 
   userAvatar.appendChild(userAvatarImg);
   allList.appendChild(allListImg);
   inbox.appendChild(inboxImg);
   completed.appendChild(completedImg);
   addNewTodo.appendChild(addNewTodoImg);
+  project.appendChild(projectImg);
   sideBar.appendChild(userAvatar);
   sideBar.appendChild(allList);
   sideBar.appendChild(inbox);
   sideBar.appendChild(completed);
   sideBar.appendChild(addNewTodo);
+  sideBar.appendChild(project);
   const appBody = document.getElementById("appContainer");
   appBody.insertAdjacentElement("afterbegin", sideBar);
   //append popover
   userAvatar.appendChild(avatarLoginPopover());
   addTodoForm();
-
+  projectsForm();
   return sideBar;
 }
 
