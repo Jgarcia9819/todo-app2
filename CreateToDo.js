@@ -1,4 +1,3 @@
-import { myToDos } from "./DisplayTodos/DisplayTodos";
 import { getDatabase, ref, set } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 //constructor for the todo format
@@ -33,7 +32,6 @@ function newTodo(item, importance, checked, assigned, project, date) {
     date
   );
   const todoDetails = todo.todoDetails();
-  myToDos.push(todoDetails);
   pushToDb(todoDetails);
   console.log("todo added:", todoDetails);
   return todoDetails;

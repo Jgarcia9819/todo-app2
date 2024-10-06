@@ -1,39 +1,47 @@
-import { getDatabase, get, ref, onValue } from "firebase/database";
 import { initializeTodoApp } from "./InitializeApp";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 initializeTodoApp();
 
-let myToDos = [];
-function getTodosFromDb(callback) {
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const db = getDatabase();
-      const todosRef = ref(db, "todos/" + user.uid);
-      get(todosRef).then((snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          myToDos = Object.values(data);
-          console.log(myToDos);
-        } else {
-          myToDos = [];
-        }
-        if (callback) callback();
-      });
-
-      onValue(todosRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          myToDos = Object.values(data);
-        } else {
-          myToDos = [];
-        }
-      });
-    } else {
-      console.log("not logged in");
-    }
+function getTodosFromDb() {
+  return new Promise((resolve, reject) => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const db = getDatabase();
+        const todosRef = ref(db, "todos/" + user.uid);
+        onValue(
+          todosRef,
+          (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+              resolve(Object.values(data));
+            } else {
+              resolve([]);
+            }
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      } else {
+        console.log("not logged in");
+        resolve([]);
+      }
+    });
   });
 }
 
-export { myToDos, getTodosFromDb };
+export { getTodosFromDb };
+
+// Using async/await
+export async function fetchTodos() {
+  try {
+    const todos = await getTodosFromDb();
+    console.log("Todos:", todos);
+    return todos;
+  } catch (error) {
+    console.error("Error fetching todos:", error);
+  }
+}

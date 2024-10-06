@@ -1,5 +1,5 @@
 import { newTodo } from "./CreateToDo";
-import { displayTodos, myToDos } from "./DisplayTodos/DisplayTodos";
+import { displayTodos } from "./DisplayTodos/DisplayTodos";
 import { projects } from "./Projects/Projects";
 import { updateProjectsArray } from "./Projects/UpdateProjects";
 import checkMarkImage from "./images/check-solid.svg";
@@ -9,6 +9,8 @@ import workTagImage from "./images/creative-commons-nd-brands-solid.svg";
 import familyTagImage from "./images/wrench-solid.svg";
 import hobbyTagImage from "./images/pencil-solid.svg";
 import importanceTagImage from "./images/exclamation-solid.svg";
+import { allFilter } from "./AllList/AllFilter";
+import { inboxFilter } from "./InboxPage/InboxFilter";
 
 const icons = {
   default: tagButtonImage,
@@ -18,6 +20,12 @@ const icons = {
   familyTag: familyTagImage,
   hobbyTag: hobbyTagImage,
 };
+
+let currentView = "";
+export function updateView(view) {
+  currentView = view;
+  console.log(currentView);
+}
 
 const inputContainer = document.createElement("div");
 const inputArea = document.createElement("input");
@@ -83,9 +91,18 @@ function todoInput() {
           projectSelector.value,
           datePicker.value
         );
+        switch (currentView) {
+          case "all":
+            allFilter();
+            break;
+          case "inbox":
+            inboxFilter();
+            break;
+        }
+        const addTodoForm = document.getElementById("addTodoForm");
+        addTodoForm.close();
         //clear listbody which is the container
         document.getElementById("listBody").innerHTML = "";
-        displayTodos();
         inputArea.value = "";
       }
     });

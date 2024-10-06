@@ -1,17 +1,20 @@
 import deleteTodoImage from "../images/trash-solid.svg";
 import { getAndSetTodoAssignedIcon } from "./DisplayTodoIcon";
 import { todoEditButton } from "./TodoEditButton";
-import { myToDos } from "../InitializeDb";
 import { deleteTodoFromDb } from "./TodoDelete";
+import { updateDataBase } from "../UpdateData";
 
 //appends list
 const listContainer = document.getElementById("listContainer");
 const listBody = document.createElement("ul");
 listBody.id = "listBody";
 listContainer.appendChild(listBody);
+
 //maps through and displays the todo array objects
-function displayTodos() {
-  myToDos.map((todo, index) => {
+function displayTodos(displayType) {
+  const listBody = document.getElementById("listBody");
+  const todosListToMap = displayType;
+  todosListToMap.map((todo, index) => {
     //todo object pieces
     const todoItem = todo.item;
     const todoTagImage = getAndSetTodoAssignedIcon(todo);
@@ -37,8 +40,7 @@ function displayTodos() {
           displayItem.remove();
         }, 200);
 
-        todo.checked = true;
-        console.log(myToDos);
+        updateDataBase(todo.id);
       }
     });
 
@@ -61,7 +63,6 @@ function displayTodos() {
       console.log("clicked delete");
       displayItem.remove();
       deleteTodoFromDb(todo);
-      console.log(myToDos);
     });
     displayItem.appendChild(todoEditButton());
     displayItem.appendChild(displayChecked);
@@ -75,4 +76,4 @@ function displayTodos() {
   return;
 }
 
-export { displayTodos, myToDos };
+export { displayTodos };

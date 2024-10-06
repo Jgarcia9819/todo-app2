@@ -1,10 +1,12 @@
 import "./styles.css";
 import { sideBar } from "./SideBar";
-import { displayTodos } from "./DisplayTodos/DisplayTodos";
 import { loginPage } from "./LoginPage/LoginPage";
 import { isUserLoggedIn } from "./LoginPage/AvatarLoginPopover";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getTodosFromDb } from "./InitializeDb";
+import { inboxPage } from "./InboxPage/InboxPage";
+import { allList } from "./AllList/AllPage";
+import { allFilter } from "./AllList/AllFilter";
+import { completedPage } from "./CompletedList/CompletedPage";
 
 //creates app body and puts things where they need to go
 function appBody() {
@@ -15,9 +17,12 @@ function appBody() {
       if (signInButton) {
         signInButton.remove();
       }
-      getTodosFromDb(displayTodos);
       sideBar();
       isUserLoggedIn();
+      allFilter();
+      allList();
+      inboxPage();
+      completedPage();
     } else {
       loginPage();
     }
