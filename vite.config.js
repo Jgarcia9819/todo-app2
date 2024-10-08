@@ -1,17 +1,12 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-    resolve: {
-        alias: {
-            '@': '/src',
-        },
-    },
-    optimizeDeps: {
-        include: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
-    },
-});
-resolve: {
+  resolve: {
     alias: {
-        '@': '/Users/joshuagarcia/Documents/GitHub/todo-app2',
+      "@": "/Users/joshuagarcia/Documents/GitHub/todo-app2",
     },
-},
+  },
+  optimizeDeps: {
+    include: ["firebase/app", "firebase/auth", "firebase/firestore"],
+  },
+});
