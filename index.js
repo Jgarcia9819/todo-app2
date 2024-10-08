@@ -7,6 +7,7 @@ import { inboxPage } from "./InboxPage/InboxPage";
 import { allList } from "./AllList/AllPage";
 import { allFilter } from "./AllList/AllFilter";
 import { completedPage } from "./CompletedList/CompletedPage";
+import { inboxFilter } from "./InboxPage/InboxFilter";
 
 //creates app body and puts things where they need to go
 function appBody() {
@@ -19,7 +20,7 @@ function appBody() {
       }
       sideBar();
       isUserLoggedIn();
-      allFilter();
+      inboxFilter();
       allList();
       inboxPage();
       completedPage();

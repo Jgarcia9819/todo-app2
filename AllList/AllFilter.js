@@ -10,7 +10,6 @@ async function allFilter() {
   listContainer.appendChild(listBody);
   const allListData = await fetchTodos();
   const data = allListData.filter((todo) => todo.checked === false);
-  console.log("alllist data passed", allListData);
   updateView("all");
   displayTodos(data);
 }

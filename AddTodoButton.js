@@ -1,5 +1,4 @@
 import { newTodo } from "./CreateToDo";
-import { updateProjectsArray } from "./Projects/UpdateProjects";
 import checkMarkImage from "./images/check-solid.svg";
 import tagButtonImage from "./images/tag-solid.svg";
 import homeTagImage from "./images/house-solid.svg";
@@ -9,6 +8,8 @@ import hobbyTagImage from "./images/pencil-solid.svg";
 import importanceTagImage from "./images/exclamation-solid.svg";
 import { allFilter } from "./AllList/AllFilter";
 import { inboxFilter } from "./InboxPage/InboxFilter";
+import { fetchProjects } from "./InitializeDb";
+import { displayProjects } from "./Projects/ProjectsDisplay";
 
 const icons = {
   default: tagButtonImage,
@@ -22,7 +23,7 @@ const icons = {
 let currentView = "";
 export function updateView(view) {
   currentView = view;
-  console.log(currentView);
+  console.log("current list view:", currentView);
 }
 
 const inputContainer = document.createElement("div");
@@ -59,14 +60,27 @@ function todoInput() {
   const projectSelectorLabel = document.createElement("label");
   projectSelectorLabel.id = "projectSelectorLabel";
   projectSelectorLabel.textContent = "Project:";
-  //foreach to get inbox/project assignments for dropdown selector
-  updateProjectsArray();
-  /*projects.forEach((projectName) => {
-    const optionSelector = document.createElement("option");
-    optionSelector.value = projectName;
-    optionSelector.textContent = projectName;
-    projectSelector.appendChild(optionSelector);
-  });*/
+
+  const optionSelector = document.createElement("option");
+  optionSelector.value = "Inbox";
+  optionSelector.textContent = "Inbox";
+  projectSelector.appendChild(optionSelector);
+
+  async function getProjects() {
+    const data = await fetchProjects();
+    return data;
+  }
+
+  getProjects().then((data) => {
+    console.log(data, "this is data");
+
+    data.map((projectName) => {
+      const optionSelector = document.createElement("option");
+      optionSelector.value = projectName.project;
+      optionSelector.textContent = projectName.project;
+      projectSelector.appendChild(optionSelector);
+    });
+  });
   projectSelectorLabel.appendChild(projectSelector);
 
   //appending of each container ITEM to display
@@ -80,12 +94,12 @@ function todoInput() {
   function pushNewTodo() {
     submitButton.addEventListener("click", () => {
       //pushes item, importance, checked, assigned, project,date to newtodo which pushes to array
-      if (inputArea.value != "") {
+      if (inputArea.value != "" && projectSelector.value != "Inbox") {
         const pushNewTodo = newTodo(
           inputArea.value,
           tagItem,
           false,
-          false,
+          true,
           projectSelector.value,
           datePicker.value
         );
@@ -97,6 +111,30 @@ function todoInput() {
             inboxFilter();
             break;
         }
+
+        const addTodoForm = document.getElementById("addTodoForm");
+        addTodoForm.close();
+        //clear listbody which is the container
+        document.getElementById("listBody").innerHTML = "";
+        inputArea.value = "";
+      } else if (inputArea.value != "" && projectSelector.value === "Inbox") {
+        const pushNewTodo = newTodo(
+          inputArea.value,
+          tagItem,
+          false,
+          true,
+          projectSelector.value,
+          datePicker.value
+        );
+        switch (currentView) {
+          case "all":
+            allFilter();
+            break;
+          case "inbox":
+            inboxFilter();
+            break;
+        }
+
         const addTodoForm = document.getElementById("addTodoForm");
         addTodoForm.close();
         //clear listbody which is the container
