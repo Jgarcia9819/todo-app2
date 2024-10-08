@@ -5,10 +5,8 @@ import { isUserLoggedIn } from "./LoginPage/AvatarLoginPopover";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { inboxPage } from "./InboxPage/InboxPage";
 import { allList } from "./AllList/AllPage";
-import { allFilter } from "./AllList/AllFilter";
 import { completedPage } from "./CompletedList/CompletedPage";
 import { inboxFilter } from "./InboxPage/InboxFilter";
-import { initializeApp } from "firebase/app";
 import { initializeTodoApp } from "@/InitializeApp.js";
 
 initializeTodoApp();
