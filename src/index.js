@@ -9,7 +9,9 @@ import { allFilter } from "./AllList/AllFilter";
 import { completedPage } from "./CompletedList/CompletedPage";
 import { inboxFilter } from "./InboxPage/InboxFilter";
 import { initializeApp } from "firebase/app";
-initializeApp();
+import { initializeTodoApp } from "@/InitializeApp.js";
+
+initializeTodoApp();
 
 //creates app body and puts things where they need to go
 function appBody() {
