@@ -12,6 +12,7 @@ export default defineConfig({
         main: path.resolve(__dirname, "index.html"),
       },
     },
+    emptyOutDir: true,
   },
   resolve: {
     alias: {
