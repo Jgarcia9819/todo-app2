@@ -1,13 +1,13 @@
+import { addTodoForm } from "./AddTodoForm";
+import { avatarLoginPopover } from "./LoginPage/AvatarLoginPopover";
+import { projectsForm } from "./Projects/ProjectsForm";
+import { displayProjects } from "./Projects/ProjectsDisplay";
 import inboxImage from "./images/inbox-solid.svg";
 import completedImage from "./images/box-solid.svg";
 import addNewTodoImage from "./images/plus-solid.svg";
 import userAvatarImage from "./images/user-plus-solid.svg";
 import allListImage from "./images/list-solid.svg";
 import projectImage from "./images/folder-open-solid.svg";
-import { addTodoForm } from "./AddTodoForm";
-import { avatarLoginPopover } from "./LoginPage/AvatarLoginPopover";
-import { projectsForm } from "./Projects/ProjectsForm";
-import { displayProjects } from "./Projects/ProjectsDisplay";
 
 function sideBar() {
   //sidebar nav
