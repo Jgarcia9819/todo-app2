@@ -22,8 +22,35 @@
       }
     },
     {
-      "src": "^/((?!assets/).)*$",
-      "dest": "/index.html"
+      "src": "^/.*\\.svg$",
+      "headers": {
+        "Content-Type": "image/svg+xml"
+      }
+    },
+    {
+      "src": "^/.*\\.png$",
+      "headers": {
+        "Content-Type": "image/png"
+      }
+    },
+    {
+      "src": "^/.*\\.jpg$",
+      "headers": {
+        "Content-Type": "image/jpeg"
+      }
+    },
+    {
+      "src": "^/.*\\.html$",
+      "headers": {
+        "Content-Type": "text/html"
+      }
+    },
+    {
+      "src": "^/.*$",
+      "dest": "/index.html",
+      "headers": {
+        "Content-Type": "text/html"
+      }
     }
   ]
 }
