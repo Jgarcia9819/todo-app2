@@ -1,4 +1,13 @@
+import {
+  getAuth,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
 
 function initializeTodoApp() {
   const firebaseConfig = {
@@ -10,6 +19,8 @@ function initializeTodoApp() {
     messagingSenderId: "1020656249894",
     appId: "1:1020656249894:web:bfd53047f97679e6618ae7",
   };
+
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 }
 
