@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; // Import the auth module
 
 function initializeTodoApp() {
   const firebaseConfig = {
@@ -11,10 +10,7 @@ function initializeTodoApp() {
     messagingSenderId: "1020656249894",
     appId: "1:1020656249894:web:bfd53047f97679e6618ae7",
   };
-
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app); // Initialize Firebase Auth
 }
 
 export { initializeTodoApp };

@@ -7,7 +7,7 @@ import { inboxPage } from "./InboxPage/InboxPage";
 import { allList } from "./AllList/AllPage";
 import { completedPage } from "./CompletedList/CompletedPage";
 import { inboxFilter } from "./InboxPage/InboxFilter";
-import { initializeTodoApp } from "@/InitializeApp.js";
+import { initializeTodoApp } from "./InitializeApp";
 
 initializeTodoApp();
 
