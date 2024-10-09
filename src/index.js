@@ -1,4 +1,4 @@
-import "./styles.css";
+import "../styles.css";
 import { sideBar } from "./SideBar";
 import { loginPage } from "./LoginPage/LoginPage";
 import { isUserLoggedIn } from "./LoginPage/AvatarLoginPopover";
